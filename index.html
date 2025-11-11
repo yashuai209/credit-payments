@@ -1,63 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buy Credits via UPI</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Credits via UPI</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Buy Credits via UPI</h2>
+    <div class="container">
+        <h1>💎 Buy Credits via UPI</h1>
+        <p class="bonus">🎁 Account Opening Bonus: +35 Credits!</p>
 
-    <img src="qr-code.jpg" alt="UPI QR Code" class="qr-img" />
+        <div class="cards">
+            <!-- Card 1 -->
+            <div class="card">
+                <h3>Basic Pack</h3>
+                <p>50 Credits</p>
+                <h2>₹50</h2>
+                <a href="upi://pay?pa=yashwantkhutte4-3@okhdfcbank&pn=Yashwant&am=50&cu=INR" class="buy-btn">Buy Now</a>
+            </div>
 
-    <p class="upi-text">
-      <strong>UPI ID:</strong>
-      <span id="upi">yashwantkhutte4-3@okhdfcbank</span>
-      <button onclick="copyUPI()">📋 Copy</button>
-    </p>
+            <!-- Card 2 -->
+            <div class="card">
+                <h3>Pro Pack</h3>
+                <p>120 Credits</p>
+                <h2>₹100</h2>
+                <a href="upi://pay?pa=yashwantkhutte4-3@okhdfcbank&pn=Yashwant&am=100&cu=INR" class="buy-btn">Buy Now</a>
+            </div>
 
-    <div class="price-list">
-      <h3>💳 Credit Pricing List</h3>
-      <ul>
-        <li onclick="selectPlan(29, 50)">₹29 → 50 Credits</li>
-        <li onclick="selectPlan(50, 100)">₹50 → 100 Credits</li>
-        <li onclick="selectPlan(100, 220)">₹100 → 220 Credits</li>
-        <li onclick="selectPlan(200, 500)">₹200 → 500 Credits</li>
-      </ul>
+            <!-- Card 3 -->
+            <div class="card">
+                <h3>Premium Pack</h3>
+                <p>250 Credits</p>
+                <h2>₹200</h2>
+                <a href="upi://pay?pa=yashwantkhutte4-3@okhdfcbank&pn=Yashwant&am=200&cu=INR" class="buy-btn">Buy Now</a>
+            </div>
+        </div>
     </div>
-
-    <button class="pay-btn" id="payNow" disabled>Pay Now</button>
-
-    <div class="footer">© 2025 EventWala | All rights reserved</div>
-  </div>
-
-  <script>
-    let selectedAmount = 0;
-    const upiID = "yashwantkhutte4-3@okhdfcbank";
-
-    function copyUPI() {
-      navigator.clipboard.writeText(upiID);
-      alert("✅ UPI ID Copied: " + upiID);
-    }
-
-    function selectPlan(amount, credits) {
-      selectedAmount = amount;
-      document.getElementById("payNow").disabled = false;
-      alert(`✅ Selected ₹${amount} for ${credits} Credits`);
-    }
-
-    document.getElementById("payNow").addEventListener("click", () => {
-      if (selectedAmount === 0) {
-        alert("Please select a plan first!");
-        return;
-      }
-
-      // UPI deep link format
-      const upiLink = `upi://pay?pa=${upiID}&pn=Yashwant%20Khutte&am=${selectedAmount}&cu=INR&tn=Credit%20Purchase`;
-      window.location.href = upiLink;
-    });
-  </script>
 </body>
 </html>
