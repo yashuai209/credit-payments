@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy Credits via UPI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Buy Credits via UPI</h2>
+
+    <img src="qr-code.jpg" alt="UPI QR Code" class="qr-img" />
+
+    <p class="upi-text">
+      <strong>UPI ID:</strong>
+      <span id="upi">yashwantkhutte4-3@okhdfcbank</span>
+      <button onclick="copyUPI()">📋 Copy</button>
+    </p>
+
+    <div class="price-list">
+      <h3>💳 Credit Pricing List</h3>
+      <ul>
+        <li onclick="selectPlan(29, 50)">₹29 → 50 Credits</li>
+        <li onclick="selectPlan(50, 100)">₹50 → 100 Credits</li>
+        <li onclick="selectPlan(100, 220)">₹100 → 220 Credits</li>
+        <li onclick="selectPlan(200, 500)">₹200 → 500 Credits</li>
+      </ul>
+    </div>
+
+    <button class="pay-btn" id="payNow" disabled>Pay Now</button>
+
+    <div class="footer">© 2025 EventWala | All rights reserved</div>
+  </div>
+
+  <script>
+    let selectedAmount = 0;
+    const upiID = "yashwantkhutte4-3@okhdfcbank";
+
+    function copyUPI() {
+      navigator.clipboard.writeText(upiID);
+      alert("✅ UPI ID Copied: " + upiID);
+    }
+
+    function selectPlan(amount, credits) {
+      selectedAmount = amount;
+      document.getElementById("payNow").disabled = false;
+      alert(`✅ Selected ₹${amount} for ${credits} Credits`);
+    }
+
+    document.getElementById("payNow").addEventListener("click", () => {
+      if (selectedAmount === 0) {
+        alert("Please select a plan first!");
+        return;
+      }
+
+      // UPI deep link format
+      const upiLink = `upi://pay?pa=${upiID}&pn=Yashwant%20Khutte&am=${selectedAmount}&cu=INR&tn=Credit%20Purchase`;
+      window.location.href = upiLink;
+    });
+  </script>
+</body>
+</html>
